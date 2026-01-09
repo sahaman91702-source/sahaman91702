@@ -1,0 +1,74 @@
+﻿@model JobPortal.Models.PagedResult<JobPortal.Models.Company>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>My Companies</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Create New Company</a>
+
+@if (!Model.Items.Any())
+{
+    <p class="text-muted">No companies created yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Jobs</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in Model.Items)
+            {
+                <tr>
+                    <td>@company.CompanyName</td>
+                    <td>@(company.Jobs?.Count ?? 0)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@company.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@company.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@company.Id">Delete</a> |
+                        <a asp-controller="Job"
+                           asp-action="Create"
+                           asp-route-companyId="@company.Id">
+                            Post Job
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<nav>
+    <ul class="pagination">
+        @if (Model.HasPrevious)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-route-page="@(Model.PageNumber - 1)">
+                    Previous
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" asp-route-page="@i">@i</a>
+            </li>
+        }
+
+        @if (Model.HasNext)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-route-page="@(Model.PageNumber + 1)">
+                    Next
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

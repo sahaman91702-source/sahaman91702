@@ -1,0 +1,70 @@
+﻿@model JobPortal.Models.PagedResult<JobApplicationViewModel>
+
+<h2>My Applications</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Job</th>
+            <th>Company</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>CV</th>
+            <th>Applied</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var app in Model.Items)
+        {
+            <tr>
+                <td>@app.JobTitle</td>
+                <td>@app.CompanyName</td>
+                <td>@app.FullName</td>
+                <td>@app.Email</td>
+                <td>@app.Contact</td>
+                <td>
+                    <a href="@app.CvPath" target="_blank">View CV</a>
+                </td>
+                <td>@app.AppliedDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        @if (Model.HasPrevious)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="MyApplications"
+                   asp-route-page="@(Model.PageNumber - 1)">
+                    Previous
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link"
+                   asp-action="MyApplications"
+                   asp-route-page="@i">
+                    @i
+                </a>
+            </li>
+        }
+
+        @if (Model.HasNext)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="MyApplications"
+                   asp-route-page="@(Model.PageNumber + 1)">
+                    Next
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

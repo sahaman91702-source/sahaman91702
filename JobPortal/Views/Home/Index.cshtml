@@ -1,0 +1,114 @@
+﻿@model IEnumerable<JobPortal.ViewModels.JobViewModel>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    .Box {
+        background: url('/images/job_searching_portals.webp') center center / cover no-repeat;
+        color: white;
+        padding: 100px 40px;
+        text-align: center;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        min-height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .Box-buttons a {
+        margin: 10px;
+        margin-top: 230px;
+        padding: 12px 25px;
+        font-size: 16px;
+        backdrop-filter: blur(4px);
+        border-radius: 10px;
+    }
+
+    .job-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+    .Footer {
+        background: #f8f9fa;
+        padding: 40px 0;
+        margin-top: 50px;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .stat-box h3 {
+        font-size: 32px;
+        color: #0d6efd;
+    }
+
+    .stat-box p {
+        margin: 0;
+        font-weight: 500;
+    }
+</style>
+
+
+<div class="Box">
+    <div class="Box-buttons">
+        <a asp-controller="Job" asp-action="Index" class="btn btn-light btn-lg">
+            Browse Jobs
+        </a>
+        <a asp-controller="Company" asp-action="Index" class="btn btn-outline-light btn-lg">
+            Post a Job
+        </a>
+    </div>
+</div>
+
+
+<h2 class="mb-4">Latest Jobs</h2>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">No jobs available right now.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var job in Model)
+        {
+            <div class="col-md-4">
+                <div class="job-card">
+                    <h5>@job.Title</h5>
+                    <p class="text-muted">@job.CompanyName</p>
+                    <p><strong>Location:</strong> @job.Location</p>
+                    <a asp-controller="Job"asp-action="Details"asp-route-id="@job.Id"class="btn btn-info btn-sm">View Details</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<div class="Footer">
+    <div class="row">
+        <div class="col-md-4 stat-box">
+            <h3>100+</h3>
+            <p>Jobs Posted</p>
+        </div>
+        <div class="col-md-4 stat-box">
+            <h3>50+</h3>
+            <p>Companies</p>
+        </div>
+        <div class="col-md-4 stat-box">
+            <h3>500+</h3>
+            <p>Applications</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<style>
+    .access-denied-container {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .access-card {
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .access-card h1 {
+        font-size: 60px;
+        color: #dc3545;
+        margin-bottom: 10px;
+    }
+
+    .access-card h3 {
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .access-card p {
+        color: #6c757d;
+        margin-bottom: 25px;
+    }
+
+    .access-card a {
+        margin: 5px;
+    }
+</style>
+
+<div class="access-denied-container">
+    <div class="access-card">
+        <h1>403</h1>
+        <h3>Access Denied</h3>
+
+        <p>
+            You do not have permission to access this page.<br />
+            This section is restricted based on your role.
+        </p>
+
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Go to Home</a>
+
+        <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-danger">Logout</a>
+    </div>
+</div>

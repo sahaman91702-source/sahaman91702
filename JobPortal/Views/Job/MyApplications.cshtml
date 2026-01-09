@@ -1,0 +1,78 @@
+﻿@model JobPortal.Models.PagedResult<JobPortal.ViewModels.JobApplicationViewModel>
+
+@{
+    ViewData["Title"] = "My Applications";
+}
+
+<h2 class="mb-4">My Applications</h2>
+
+@if (!Model.Items.Any())
+{
+    <p class="text-muted">You have not applied to any jobs yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Applied On</th>
+                <th>CV</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var app in Model.Items)
+            {
+                <tr>
+                    <td>@app.JobTitle</td>
+                    <td>@app.CompanyName</td>
+                    <td>@app.AppliedDate.ToShortDateString()</td>
+                    <td>
+                        <a href="@app.CvPath" target="_blank" class="btn btn-sm btn-outline-primary">
+                            View CV
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- PAGINATION -->
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        @if (Model.HasPrevious)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="MyApplications"
+                   asp-route-page="@(Model.PageNumber - 1)">
+                    Previous
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link"
+                   asp-action="MyApplications"
+                   asp-route-page="@i">
+                    @i
+                </a>
+            </li>
+        }
+
+        @if (Model.HasNext)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="MyApplications"
+                   asp-route-page="@(Model.PageNumber + 1)">
+                    Next
+                </a>
+            </li>
+        }
+    </ul>
+</nav>
