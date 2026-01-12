@@ -1,68 +1,75 @@
-﻿@model JobPortal.Models.PagedResult<JobPortal.ViewModels.JobViewModel>
+﻿@using Microsoft.AspNetCore.Identity
+@model JobPortal.Models.PagedResult<JobPortal.ViewModels.JobViewModel>
+
+@inject UserManager<IdentityUser> UserManager
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 <h1>Job Listings</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New Job</a>
+	<a asp-action="Create" class="btn btn-primary">Create New Job</a>
 </p>
 
 <table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Company</th>
-            <th>Location</th>
-            <th>Posted Date</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Items)
-        {
-            <tr>
-                <td>@item.Title</td>
-                <td>@item.CompanyName</td>
-                <td>@item.Location</td>
-                <td>@item.PostedDate.ToShortDateString()</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Company</th>
+			<th>Location</th>
+			<th>Posted Date</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Items)
+		{
+			<tr>
+				<td>@item.Title</td>
+				<td>@item.CompanyName</td>
+				<td>@item.Location</td>
+				<td>@item.PostedDate.ToShortDateString()</td>
+				<td>
+
+					@if (!await UserManager.IsInRoleAsync(await UserManager.FindByNameAsync(User.Identity.Name), "User"))
+				{
+						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <span>|</span>
+				}
+						<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					</td>
+				</tr>
+				}
+	</tbody>
 </table>
 
 <nav>
-    <ul class="pagination">
-        @if (Model.HasPrevious)
-        {
-            <li class="page-item">
-                <a class="page-link" asp-route-page="@(Model.PageNumber - 1)">
-                    Previous
-                </a>
-            </li>
-        }
+	<ul class="pagination">
+		@if (Model.HasPrevious)
+		{
+			<li class="page-item">
+				<a class="page-link" asp-route-page="@(Model.PageNumber - 1)">
+					Previous
+				</a>
+			</li>
+		}
 
-        @for (int i = 1; i <= Model.TotalPages; i++)
-        {
-            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
-                <a class="page-link" asp-route-page="@i">@i</a>
-            </li>
-        }
+		@for (int i = 1; i <= Model.TotalPages; i++)
+		{
+			<li class="page-item @(i == Model.PageNumber ? "active" : "")">
+				<a class="page-link" asp-route-page="@i">@i</a>
+			</li>
+		}
 
-        @if (Model.HasNext)
-        {
-            <li class="page-item">
-                <a class="page-link" asp-route-page="@(Model.PageNumber + 1)">
-                    Next
-                </a>
-            </li>
-        }
-    </ul>
+		@if (Model.HasNext)
+		{
+			<li class="page-item">
+				<a class="page-link" asp-route-page="@(Model.PageNumber + 1)">
+					Next
+				</a>
+			</li>
+		}
+	</ul>
 </nav>
