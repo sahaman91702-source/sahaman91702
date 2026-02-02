@@ -1,6 +1,7 @@
 ﻿@model JobPortal.ViewModels.JobViewModel
 @using Microsoft.AspNetCore.Identity
 @using System.Security.Claims
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Job Details";
@@ -29,7 +30,7 @@
 <hr />
 
 <div class="mt-3">
-    <!-- Apply button (only for logged-in users) -->
+   
     @if (User.Identity != null && User.Identity.IsAuthenticated)
     {
         <a asp-action="Apply"
@@ -47,12 +48,14 @@
         </a>
     }
 
-    <!-- Employer / Admin actions -->
-    <a asp-action="Edit"
-       asp-route-id="@Model.Id"
-       class="btn btn-warning me-2">
-        Edit
-    </a>
+    @if (!await UserManager.IsInRoleAsync(await UserManager.FindByNameAsync(User.Identity.Name), "User"))
+    {
+        <a asp-action="Edit"
+        asp-route-id="@Model.Id"
+        class="btn btn-warning me-2">
+            Edit
+        </a>
+    }
 
     <a asp-action="Index"
        class="btn btn-secondary">

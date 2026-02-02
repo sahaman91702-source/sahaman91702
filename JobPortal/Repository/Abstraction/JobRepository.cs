@@ -1,7 +1,8 @@
-﻿using JobPortal.Models;
+﻿using JobPortal;
+using JobPortal.Models;
 using JobPortal.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using JobPortal;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 public class JobRepository : IJobRepository
 {

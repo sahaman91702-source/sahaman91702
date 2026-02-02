@@ -9,6 +9,7 @@ wwwroot\cvs\70f48f2b-e29d-4718-b8ba-ce2be002cfc9_.net cv.pdf
 wwwroot\cvs\81220917-733a-4992-b517-7bda14a0bcc6_.net cv.pdf
 wwwroot\cvs\8ade4c24-1e9e-44b2-b461-9f827931a0fe_AIML cv.pdf
 wwwroot\cvs\8b088e5b-b4b0-4f39-b597-8c14196114e2_mern cv.pdf
+wwwroot\cvs\a00972b0-0fba-4e76-ac3b-dab0dfceb3b2_AIML cv.pdf
 wwwroot\cvs\a59279cd-db61-4f64-ba54-449ddbbfef6f_.net cv.pdf
 wwwroot\cvs\a628eeb5-fbf7-42a7-92f9-54998610e38b_.net cv.pdf
 wwwroot\cvs\b15c136b-7877-4e83-9c60-da886cc2d99c_.net cv.pdf
@@ -17,9 +18,11 @@ wwwroot\cvs\bf11282a-9284-44ca-8743-6d0cf64fe46d_AIML cv.pdf
 wwwroot\cvs\c04883fa-89e1-47c3-aa92-9db3d22ff02b_AIML cv.pdf
 wwwroot\cvs\c6d27826-de1f-4a0c-ae27-4a660daad85a_AIML cv.pdf
 wwwroot\cvs\d34c69cc-2fe5-49a1-a49e-44eb248c91fd_mern cv.pdf
+wwwroot\cvs\d6482264-ce18-488e-9f30-24f2c44ad100_mern cv.pdf
 wwwroot\cvs\e5bdb9e1-8eee-4b74-8784-8aa959850684_AIML cv.pdf
 wwwroot\cvs\fe715f3c-4f7f-4e4d-8427-c5b5b30dccd2_.net cv.pdf
 wwwroot\favicon.ico
+wwwroot\images\140Z_2106.w023.n001.634B.p1.634.jpg
 wwwroot\images\job_searching_portals.webp
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css

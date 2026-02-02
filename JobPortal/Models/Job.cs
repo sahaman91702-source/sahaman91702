@@ -14,10 +14,6 @@ namespace JobPortal.Models
         public string Title { get; set; }
 
         [Required]
-        [Display(Name = "Company")]
-        public string CompanyName { get; set; }
-
-        [Required]
         [Display(Name = "Job Description")]
         [MinLength(15)]
         public string Description { get; set; }

@@ -280,3 +280,4 @@ C:\Users\Administrator\source\repos\JobPortal\JobPortal\obj\Debug\net10.0\JobPor
 C:\Users\Administrator\source\repos\JobPortal\JobPortal\obj\Debug\net10.0\JobPortal.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\JobPortal\JobPortal\obj\Debug\net10.0\ref\JobPortal.dll
 C:\Users\Administrator\source\repos\JobPortal\JobPortal\obj\Debug\net10.0\compressed\is14io2xdr-{0}-ktkj6bz9j4-ktkj6bz9j4.gz
+C:\Users\Administrator\source\repos\JobPortal\JobPortal\obj\Debug\net10.0\JobPortal.sourcelink.json
